@@ -12,15 +12,8 @@ find_package(Boost REQUIRED
 
 find_package(Eigen REQUIRED)
 
-find_package(PkgConfig REQUIRED)
+find_package(OGRE REQUIRED)
 
-pkg_check_modules(OGRE OGRE)
-## Find OGRE Plugin path (not necessarily platform-independent, I guess)
-execute_process(COMMAND 
-pkg-config --variable=plugindir OGRE 
-OUTPUT_VARIABLE OGRE_PLUGIN_PATH
-OUTPUT_STRIP_TRAILING_WHITESPACE
-)
 message(STATUS OGRE_PLUGIN_PATH=${OGRE_PLUGIN_PATH})
 
 if(APPLE)
@@ -84,8 +77,6 @@ include_directories(SYSTEM
   ${PYTHON_INCLUDE_PATH}
 )
 include_directories(src ${catkin_INCLUDE_DIRS})
-
-link_directories(${OGRE_LIBRARY_DIRS})
 
 include(${QT_USE_FILE})
 add_definitions(-DQT_NO_KEYWORDS)
